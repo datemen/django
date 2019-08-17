@@ -1,0 +1,11 @@
+{% extends 'board/index_layout.html' %}
+
+{% block title %}教えて、先生!!!{% endblock %}
+
+{% block content %}
+    <p>ここは様々な人が勉強のために役立てるコミュニティだよ</p>
+    <p>分からないことや悩みがあったらみんなにきいてみよう！</p>
+    <p>匿名できくことができるから安心してね</p>
+    <p>様々な先生たちにあってみよう</p>
+    <a href="{% url 'board_second_topic' '小学生' %}" class="btn-circle-fishy">登校する</a>
+{% endblock %}

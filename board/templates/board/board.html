@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}掲示板{% endblock %}</title>
+    <link rel="stylesheet" type="text/css"
+        href="{% static 'board/board_style.css' %}" />
+</head>
+
+<div id="menu">
+<ul>
+<li><a href="{% url 'board_index' %}">教えて、先生!!!</a></li>
+<li><a href="{% url 'board_third_topic' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic %}">一覧</a></li>
+<li><a href="{% url 'board' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic sel_third_topic.third_topic %}">更新</a></li>
+</ul> 
+<form method="POST" action="{% url 'board' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic sel_third_topic.third_topic %}">
+{% csrf_token %}
+キーワード検索:{{searchform.search}}
+<input type="hidden" name="mode" value="__search_form__">
+<button type = "submit">検索</button>
+</form>
+</div>
+
+<header>
+</header>
+
+<body>
+    <div class="body_content">
+    <span style="background-color:#00ffff">TalkCounter:{{message_count}}</span>　　<a href="{% url 'board_second_topic' sel_third_topic.second_topic.first_topic.first_topic %}">{{sel_third_topic.second_topic.first_topic.first_topic}}</a>　>　<a href="{% url 'board_third_topic' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic %}">{{sel_third_topic.second_topic.second_topic}}</a>　>　<a href="{% url 'board' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic sel_third_topic.third_topic %}">{{sel_third_topic.third_topic}}</a>
+    <h1 class="title">{{third_topic_name}}</h1><br>
+    <hr>
+    <div class="body_content_inner">
+    {% for item in message %}
+        名前:{{item.screenname}}　　{{item.pub_date|date:"Y-m-j H:i:s"}}
+        <br>{{item.content　| linebreaksbr}}<br><br>
+    {% endfor %}
+    </div>
+    </div>
+    
+<form action="{% url 'board' sel_third_topic.second_topic.first_topic.first_topic sel_third_topic.second_topic.second_topic sel_third_topic.third_topic %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="mode" value="__message_form__">
+<table>
+<tr><th>名前</th><td>{{form.screenname}}</td></tr>
+<tr><th>内容</th><td>{{form.content}}</td></tr>
+<tr><th></th><td><button type = "submit">投稿</button></td></tr>
+</table>
+</form>
+
+</body>
+</html>

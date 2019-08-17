@@ -1,0 +1,55 @@
+{% extends 'board/layout.html' %}
+
+{% block title %}トピック{% endblock %}
+{% block serchform %}
+<form method="POST" action="{% url 'search_result' sel_first_topic.first_topic %}" class="search_form">
+{% csrf_token %}
+タイトル検索:{{searchform.search}}
+<input type="hidden" name="mode" value="__search_form__">
+<button type = "submit">検索</button>
+</form>
+{% endblock %}
+{% block header %}
+
+
+{% endblock %}
+
+
+{% block content %}
+{{sel_first_topic.first_topic}}　>
+{% for item in even_second_first_topic %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board_third_topic' item.first_topic.first_topic item.second_topic %}">{{item.second_topic}}</a></li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block content_side %}
+<br>
+{% for item in odd_second_first_topic %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board_third_topic' item.first_topic.first_topic item.second_topic %}">{{item.second_topic}}</a></li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block form %}
+<div class="create_topic_form">
+<h4>トピック作成</h4>
+<form method="POST" action="{% url 'board_second_topic' sel_first_topic.first_topic %}">
+      {% csrf_token %}
+      <table>
+        {{form.second_topic}}
+      </table>
+      <input type="hidden" name="mode" value="__create_topic__">
+      <button type = "submit">作成</button>
+</form>
+</div>
+
+{% endblock %}

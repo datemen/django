@@ -1,0 +1,26 @@
+.body_content {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #fffaf0;/*背景色*/
+}
+.body_content p {
+    margin: 0; 
+    padding: 0;
+}
+
+body {
+    background-image: url("retina_wood.png");
+}
+
+#menu {
+    background-color:#f0f8ff;
+}
+#menu ul li {
+    display: inline;
+    padding:0px 10px 0px 0px;
+}
+
+.title {
+    color:#ff7f50;
+}

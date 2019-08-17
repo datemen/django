@@ -1,0 +1,52 @@
+{% extends 'board/layout.html' %}
+
+{% block title %}トピック{% endblock %}
+{% block serchform %}
+<form method="POST" action="{% url 'search_result' sel_second_topic.second_topic %}" class="search_form">
+{% csrf_token %}
+タイトル検索:{{searchform.search}}
+<input type="hidden" name="mode" value="__search_form__">
+<button type = "submit">検索</button>
+</form>
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+{{sel_second_topic.first_topic.first_topic}}　>　{{sel_second_topic.second_topic}}
+    {% for item in even_third_second_first_topic %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board' item.second_topic.first_topic.first_topic item.second_topic.second_topic item.third_topic %}">{{item.third_topic}}</a>アクセス数:{{item.views}}トーク数:{{item.talk_count}}</li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+{% block content_side %}
+<br>
+{% for item in odd_third_second_first_topic %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board' item.second_topic.first_topic.first_topic item.second_topic.second_topic item.third_topic %}">{{item.third_topic}}</a>アクセス数:{{item.views}}トーク数:{{item.talk_count}}</li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block form %}
+<div class="create_title_form">
+<h4>スレッド作成</h4>
+<form method="POST" action="{% url 'board_third_topic' sel_second_topic.first_topic.first_topic sel_second_topic.second_topic %}">
+      {% csrf_token %}
+      <table>
+        {{form.third_topic}}
+      </table>
+      <input type="hidden" name="mode" value="__create_title__">
+      <button type = "submit">作成</button>
+</form>
+</div>
+
+{% endblock %}

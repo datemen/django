@@ -1,0 +1,109 @@
+h1{
+    color:black;
+    text-align:left;
+    font-weight:100;
+}
+
+ul.topnav {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	background-color: #1b2538;
+}
+ul.topnav li {
+	float: left;
+	border-right: 1px solid #bbbbbb;
+}
+
+ul.topnav li a {
+	display: block;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+ul.topnav li a:hover:not(.active) {
+	background-color: #a9bce2;
+}
+
+ul.topnav li.right {
+	float: right;
+}
+@media screen and (max-width: 480px) {
+	ul.topnav li.right, ul.topnav li {
+		float: none;
+	}
+}
+
+#navi{
+margin: auto;
+margin-bottom: 20px;
+margin-top: 10px;
+padding-left:0;
+list-style-type:none;
+width:200px;
+text-align: center;
+font-weight:bold;
+border-top:1px solid #cccccc;
+}
+
+#navi a{
+display:block;
+padding:5px 0px 5px 5px;
+background-color:#eeeeee;
+text-decoration:none;
+color:#555555;
+width:193px;
+}
+
+#navi a:hover{
+background-color:#aaaaaa;
+}
+
+#navi li{
+border-left:1px solid #cccccc;
+border-right:1px solid #cccccc;
+border-bottom:1px solid #cccccc;
+}
+
+
+body {
+    background-color:#dcdcdc;
+}
+
+.title {
+    color: #4169e1;
+    text-align:center;
+}
+
+.body_content {
+    background-color:#fffafa;
+}
+
+.create_form {
+    width:170px;
+    background-color:#f8f8ff;
+}
+.create_title_form h4 {
+    color:#696969;
+}
+.create_topic_form h4 {
+    color:#696969;
+}
+
+.search_form{
+    margin: 0 0 0 auto;
+    background-color:#f0fae6;
+    width:300px;
+}
+
+.footer{
+    text-align:right;
+}
+.content, .content_side {
+  float: left;
+  background-color:#fff;
+  border-color: yellow;
+  width: 50%;  /** 横幅50% **/
+}

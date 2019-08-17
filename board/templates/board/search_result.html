@@ -1,0 +1,40 @@
+{% extends 'board/layout.html' %}
+
+{% block title %}トピック{% endblock %}
+{% block serchform %}
+<form method="POST" action="{% url 'search_result' search_word %}" class="search_form">
+{% csrf_token %}
+タイトル検索:{{searchform.search}}
+<input type="hidden" name="mode" value="__search_form__">
+<button type = "submit">検索</button>
+</form>
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+検索ワード　>　{{search_word}}
+{% for item in even_search_result %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board' item.second_topic.first_topic.first_topic item.second_topic.second_topic item.third_topic %}">{{item.third_topic}}</a>{{item.second_topic.first_topic.first_topic}}　>　{{item.second_topic.second_topic}}<br>アクセス数:{{item.views}}トーク数:{{item.talk_count}}</li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+{% block content_side %}
+<br>
+{% for item in odd_search_result %}
+    <div class="sel_topic">
+    <ul id="navi">
+    <li><a href="{% url 'board' item.second_topic.first_topic.first_topic item.second_topic.second_topic item.third_topic %}">{{item.third_topic}}</a>{{item.second_topic.first_topic.first_topic}}　>　{{item.second_topic.second_topic}}<br>アクセス数:{{item.views}}トーク数:{{item.talk_count}}</li>
+    </ul> 
+    </div>
+    {% endfor %}
+{% endblock %}
+
+{% block form %}
+
+{% endblock %}

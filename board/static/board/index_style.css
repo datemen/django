@@ -1,0 +1,27 @@
+body{
+    background-color:#dcdcdc;
+    text-align:center;
+}
+
+.body_content {
+    background-color:#fffafa;
+}
+
+.btn-circle-fishy {
+  display: inline-block;
+  text-decoration: none;
+  color: #FFF;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  background-image: linear-gradient(135deg, orange, orange 60%, cyan);
+  transition: .4s;
+}
+
+.btn-circle-fishy:hover {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}

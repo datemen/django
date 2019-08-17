@@ -10,11 +10,6 @@ class Index(TemplateView):
     template_name = 'board/index.html'
 board_index = Index.as_view()
 
-class First_Topic_Page(View):
-    def get(self, request, *args, **kwargs):
-        first_topic = First_Topic.objects.all()
-        return  render(request, 'board/first_topic.html', {'first_topic': first_topic,})
-first_topic_page = First_Topic_Page.as_view()
 
 
 class Second_Topic_Page(View):
@@ -103,6 +98,7 @@ class Board(View):
             msg.third_topic = sel_third_topic
             msg.save()
             return redirect(request.META['HTTP_REFERER'])
+        #キーワード検索
         if request.POST['mode'] == '__search_form__':
             searchform = SearchForm(data=request.POST)
             form = BoardMessageForm(request.POST)
@@ -132,4 +128,17 @@ class Search_Result(View):
                 raise ValueError('Invailed form')
             search_word = searchform.cleaned_data['search']
             return redirect('search_result' , search_word=search_word)
-search_result = Search_Result.as_view()       
+search_result = Search_Result.as_view()  
+
+
+class Ranking(View):
+    def get(self, request , *args, **kwargs):
+        searchform = SearchForm(request.POST)
+        search_word = "なんでも大丈夫君"
+        even_third_topic_access = Third_Topic.objects.order_by('-views') [0:49:2]
+        odd_third_topic_access = Third_Topic.objects.order_by('-views') [1:50:2]
+        even_third_topic_talk = Third_Topic.objects.order_by('-talk_count') [0:49:2]
+        odd_third_topic_talk = Third_Topic.objects.order_by('-talk_count') [1:50:2]
+        return  render(request, 'board/ranking.html', {'searchform':searchform,'even_third_topic_access': even_third_topic_access,'odd_third_topic_access': odd_third_topic_access,'search_word':search_word,'even_third_topic_talk': even_third_topic_talk,'odd_third_topic_talk': odd_third_topic_talk,})
+ranking_page = Ranking.as_view()    
+ 
